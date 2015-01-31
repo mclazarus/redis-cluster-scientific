@@ -1,0 +1,10 @@
+SITE
+  remote: https://supermarket.getchef.com/api/v1
+  specs:
+    yum (3.5.2)
+    yum-epel (0.6.0)
+      yum (~> 3.0)
+
+DEPENDENCIES
+  yum-epel (~> 0.6.0)
+
