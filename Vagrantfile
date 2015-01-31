@@ -21,8 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.json = {
       }
       
-      chef.run_list = [
-                      ]
+      chef.run_list = [ "role[redis-node]" ]
     end
   end
 
@@ -38,8 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.json = {
       }
       
-      chef.run_list = [
-                      ]
+      chef.run_list = [ "role[redis-node]" ]
     end
   end
 
