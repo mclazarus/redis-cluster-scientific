@@ -1,0 +1,8 @@
+{
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "name": "redis-node",
+    "run_list": [
+        "recipe[redis-nodes]"
+    ]
+}
