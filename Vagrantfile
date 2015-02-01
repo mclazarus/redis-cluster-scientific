@@ -18,10 +18,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
       chef.data_bags_path = "data_bags"
       chef.roles_path = "roles"
+
       chef.json = {
+        "redis-multi" => {
+          master: '192.168.255.51',
+          redis_master: '192.168.255.51'
+        }
       }
       
-      chef.run_list = [ "role[redis-node]" ]
+      chef.run_list = [
+        "recipe[redis-multi::master]",
+        "recipe[redis-multi]",
+        "recipe[redis-multi::enable]",
+        "recipe[redis-multi::sentinel]",
+        "recipe[redis-multi::sentinel_default]",
+        "recipe[redis-multi::sentinel_enable]"
+      ]
     end
   end
 
@@ -35,9 +47,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.data_bags_path = "data_bags"
       chef.roles_path = "roles"
       chef.json = {
+        "redis-multi" => {
+          master: '192.168.255.51',
+          redis_master: '192.168.255.51'
+        } 
       }
       
-      chef.run_list = [ "role[redis-node]" ]
+      chef.run_list = [
+        "recipe[redis-multi::slave]",
+        "recipe[redis-multi]",
+        "recipe[redis-multi::enable]",
+        "recipe[redis-multi::sentinel]",
+        "recipe[redis-multi::sentinel_default]",
+        "recipe[redis-multi::sentinel_enable]"
+      ]
     end
   end
 
